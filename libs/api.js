@@ -12,7 +12,7 @@ exports = module.exports = API;
 
 function API(endpoint) {
   this.endpoint = endpoint;
-};
+}; 
 
 API.prototype.__request = function (options, done) {
   options.query = options.query || {};

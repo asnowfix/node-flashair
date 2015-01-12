@@ -236,7 +236,7 @@ Command.prototype.getApplicationSpecificInformation = function ( done ) {
 
   Command.prototype.getString( 117, done );
   
-};
+}; 
 
 Command.prototype.getUploadParameters = function ( done ) {
 
