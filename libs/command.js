@@ -156,40 +156,21 @@ Command.prototype.getNumberOfFiles = function (dirname, done) {
 };
 
 Command.prototype.getUpdateStatus = function ( done ) {
-  var that = this;
-
-
-  this.__request({
-    hostname: this.endpoint,
-    pathname: "/command.cgi",
-    query: {
-      op: 102
-    },
-  }, function (err, body) {
-    
-    var res = "";
- 
-    if ( !err )
-     res =  body.trim().split("\r\n");
-    
-     done(parseInt(res[0]), null );
-  });
-};
-
-
   
+ Command.prototype.getInt( 102, done );
+};
 
 
 Command.prototype.getSSID = function ( done ) {
   
   
-  Command.prototype.getString( 102, done );
+  Command.prototype.getString( 104, done );
 
 };
 
 Command.prototype.getNetworkPassword = function ( done ) {
 
-  Command.prototype.getString( 104, done );
+  Command.prototype.getString( 105, done );
   
 };
 
