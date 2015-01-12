@@ -10,6 +10,10 @@ exports = module.exports = Command;
 Command.prototype.getString = function getString( code, callback ) {
     var that = this;
 
+      if ( !callback )
+      {
+	throw "Missing callback";
+      }
 
   this.__request({
     hostname: this.endpoint,
@@ -19,7 +23,11 @@ Command.prototype.getString = function getString( code, callback ) {
     },
   }, function (err, body) {
  
-    var res =  body.trim().split("\r\n");
+    var res=[''];
+    if ( !err )
+    {      
+      res =  body.trim().split("\r\n");
+    }
     
     callback( err, res[0] );
   });
@@ -27,7 +35,11 @@ Command.prototype.getString = function getString( code, callback ) {
 
 Command.prototype.getInt = function( code, callback ) {
     var that = this;
-
+    
+      if ( !callback )
+      {
+	throw "Missing callback";
+      }
 
   this.__request({
     hostname: this.endpoint,
@@ -37,14 +49,24 @@ Command.prototype.getInt = function( code, callback ) {
     },
   }, function (err, body) {
  
-    var res =  body.trim().split("\r\n");
+    var res=[0];
+    
+    if ( !err )
+    {
+     res =  body.trim().split("\r\n");
+    }
     
     callback( err, parseInt( res[0] ) );
   });
 };
 
-Command.prototype.getFileList = function (dirname, done) {
+Command.prototype.getFileList = function (dirname, callback) {
   var that = this;
+  
+      if ( !callback )
+      {
+	throw "Missing callback";
+      }
 
   if (dirname[0] !== "/") {
     dirname = "/" + dirname;
@@ -66,10 +88,11 @@ Command.prototype.getFileList = function (dirname, done) {
     },
   }, function (err, body) {
     
+   
     var files = body.trim().split("\r\n");
 
     if (files[0] !== "WLANSD_FILELIST") {
-      return done(new Error("wrong protocol"), null);
+      return callback(new Error("wrong protocol"), null);
     }
 
     files = files.slice(1).map(function (filename) {
@@ -121,12 +144,17 @@ Command.prototype.getFileList = function (dirname, done) {
       return prop;
     });
 
-    done(err, files.slice(1));
+    callback(err, files.slice(1));
   });
 };
 
-Command.prototype.getNumberOfFiles = function (dirname, done) {
+Command.prototype.getNumberOfFiles = function (dirname, callback) {
   var that = this;
+  
+      if ( !callback )
+      {
+	throw "Missing callback";
+      }
 
     if (dirname[0] !== "/") {
     dirname = "/" + dirname;
@@ -149,98 +177,105 @@ Command.prototype.getNumberOfFiles = function (dirname, done) {
     var res = "";
     
     if ( !err )
+    {
      res = parseInt( body.trim().split("\r\n") );
+    }
     
-    done( err, res );
+    callback( err, res );
   });
 };
 
-Command.prototype.getUpdateStatus = function ( done ) {
+Command.prototype.getUpdateStatus = function ( callback ) {
   
- Command.prototype.getInt( 102, done );
+ Command.prototype.getInt( 102, callback );
 };
 
 
-Command.prototype.getSSID = function ( done ) {
+Command.prototype.getSSID = function ( callback ) {
   
   
-  Command.prototype.getString( 104, done );
+  Command.prototype.getString( 104, callback );
 
 };
 
-Command.prototype.getNetworkPassword = function ( done ) {
+Command.prototype.getNetworkPassword = function ( callback ) {
 
-  Command.prototype.getString( 105, done );
+  Command.prototype.getString( 105, callback );
   
 };
 
-Command.prototype.getMACAddress = function ( done ) {
+Command.prototype.getMACAddress = function ( callback ) {
 
-  Command.prototype.getString( 106, done );
+  Command.prototype.getString( 106, callback );
   
 };
 
-Command.prototype.getAcceptableBrowserLanguage = function ( done ) {
+Command.prototype.getAcceptableBrowserLanguage = function ( callback ) {
 
-  Command.prototype.getString( 107, done );
+  Command.prototype.getString( 107, callback );
   
 };
 
-Command.prototype.getFirmwareVersion = function ( done ) {
+Command.prototype.getFirmwareVersion = function ( callback ) {
 
-  Command.prototype.getString( 108, done );
-  
-};
-
-
-Command.prototype.getControlImage = function ( done ) {
-
-  Command.prototype.getString( 109, done );
-  
-};
-
-Command.prototype.getWirelessLANMode = function ( done ) {
-
-  Command.prototype.getInt( 110, done );
+  Command.prototype.getString( 108, callback );
   
 };
 
 
-Command.prototype.getWirelessLANTimeoutPeriod = function ( done ) {
+Command.prototype.getControlImage = function ( callback ) {
 
-  Command.prototype.getInt( 111, done );
+  Command.prototype.getString( 109, callback );
+  
+};
+
+Command.prototype.getWirelessLANMode = function ( callback ) {
+
+  Command.prototype.getInt( 110, callback );
   
 };
 
 
-Command.prototype.getApplicationSpecificInformation = function ( done ) {
+Command.prototype.getWirelessLANTimeoutPeriod = function ( callback ) {
 
-  Command.prototype.getString( 117, done );
+  Command.prototype.getInt( 111, callback );
+  
+};
+
+
+Command.prototype.getApplicationSpecificInformation = function ( callback ) {
+
+  Command.prototype.getString( 117, callback );
   
 }; 
 
-Command.prototype.getUploadParameters = function ( done ) {
+Command.prototype.getUploadParameters = function ( callback ) {
 
-  Command.prototype.getInt( 118, done );
+  Command.prototype.getInt( 118, callback );
   
 };
 
-Command.prototype.getCardIdentifier = function ( done ) {
+Command.prototype.getCardIdentifier = function ( callback ) {
 
-  Command.prototype.getString( 120, done );
+  Command.prototype.getString( 120, callback );
   
 };
 
-Command.prototype.getTimestampOfWriteEvent = function ( done ) {
+Command.prototype.getTimestampOfWriteEvent = function ( callback ) {
 
-  Command.prototype.getInt( 121, done );
+  Command.prototype.getInt( 121, callback );
   
 };
 
 
 //Read data from shared memory (op=130)
-Command.prototype.readDataFromSharedMemory = function (addr,len, done) {
+Command.prototype.readDataFromSharedMemory = function (addr,len, callback) {
   var that = this;
+  
+      if ( !callback )
+      {
+	throw "Missing callback";
+      }
 
     if (dirname[0] !== "/") {
     dirname = "/" + dirname;
@@ -264,15 +299,22 @@ Command.prototype.readDataFromSharedMemory = function (addr,len, done) {
     var res = "";
     
     if ( !err )
+    {
      res =  body.trim().split("\r\n");
+    }
     
-    done( err, res );
+    callback( err, res );
   });
 };
 
 //Write data to shared memory (op=131)
-Command.prototype.writeDataToSharedMemory = function (addr,len, data, done) {
+Command.prototype.writeDataToSharedMemory = function (addr,len, data, callback) {
   var that = this;
+  
+      if ( !callback )
+      {
+	throw "Missing callback";
+      }
 
     if (dirname[0] !== "/") {
     dirname = "/" + dirname;
@@ -297,24 +339,31 @@ Command.prototype.writeDataToSharedMemory = function (addr,len, data, done) {
     var res = "";
     
     if ( !err )
+    {
      res =  body.trim().split("\r\n");
+    }
     
-    done( err, res );
+    callback( err, res );
   });
 };
 
 
 
-Command.prototype.getNumberOfEmptySectors = function ( done ) {
+Command.prototype.getNumberOfEmptySectors = function ( callback ) {
 
-  Command.prototype.getString( 140, done );
+  Command.prototype.getString( 140, callback );
   
 };
 
 
 //Control SD Interface as user I/O (op=190)
-Command.prototype.controlSDInterfaceAsUserIO = function (ctrl,data, done) {
+Command.prototype.controlSDInterfaceAsUserIO = function (ctrl,data, callback) {
   var that = this;
+  
+      if ( !callback )
+      {
+	throw "Missing callback";
+      }
 
     if (dirname[0] !== "/") {
     dirname = "/" + dirname;
@@ -338,16 +387,23 @@ Command.prototype.controlSDInterfaceAsUserIO = function (ctrl,data, done) {
     var res = "";
     
     if ( !err )
+    {
      res =  body.trim().split("\r\n");
+    }
     
-    done( err, res );
+    callback( err, res );
   });
 };
 
 
 //Enable Photo Share mode (op=200)
-Command.prototype.enablePhotoShareMode = function (dirname,date, done) {
+Command.prototype.enablePhotoShareMode = function (dirname,date, callback) {
   var that = this;
+  
+      if ( !callback )
+      {
+	throw "Missing callback";
+      }
 
     if (dirname[0] !== "/") {
     dirname = "/" + dirname;
@@ -371,28 +427,30 @@ Command.prototype.enablePhotoShareMode = function (dirname,date, done) {
     var res = "";
     
     if ( !err )
+    {
      res = body.trim().split("\r\n");
+    }
     
-     done( err, res );
+     callback( err, res );
   });
 };
 
 //Disable Photo Share mode (op=201)
-Command.prototype.disablePhotoShareMode = function ( done ) {
+Command.prototype.disablePhotoShareMode = function ( callback ) {
 
-  Command.prototype.getString( 201, done );
+  Command.prototype.getString( 201, callback );
   
 };
 
-Command.prototype.getPhotoShareModeStatus = function ( done ) {
+Command.prototype.getPhotoShareModeStatus = function ( callback ) {
 
-  Command.prototype.getString( 202, done );
+  Command.prototype.getString( 202, callback );
   
 };
 
-Command.prototype.getSSIDForPhotoShareMode = function ( done ) {
+Command.prototype.getSSIDForPhotoShareMode = function ( callback ) {
 
-  Command.prototype.getString( 203, done );
+  Command.prototype.getString( 203, callback );
   
 };
 
