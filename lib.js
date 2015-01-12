@@ -1,6 +1,10 @@
 /**
- * node-flashair
- * Flashair API Wrapper
+ * Project     : node-flashair
+ * Component   : FileTransferService
+ * Author      : Giovanni Ortu
+ * eMail       : giovanni.ortu@abinsula.com
+ * Module name : Library
+ * Description :
  */
 
 // default

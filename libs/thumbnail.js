@@ -1,3 +1,12 @@
+/**
+ * Project     : node-flashair
+ * Component   : FileTransferService
+ * Author      : Giovanni Ortu
+ * eMail       : giovanni.ortu@abinsula.com
+ * Module name : Thumbnail
+ * Description :
+ */
+
 var Thumbnail = require("./api");
 
 exports = module.exports = Thumbnail; 

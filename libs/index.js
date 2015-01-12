@@ -1,8 +1,11 @@
 /**
- * libs
- *
- */ 
-
+ * Project     : node-flashair
+ * Component   : FileTransferService
+ * Author      : Giovanni Ortu
+ * eMail       : giovanni.ortu@abinsula.com
+ * Module name : Library
+ * Description :
+ */
 
 var Command = require("./command");
 var Config = require("./config");

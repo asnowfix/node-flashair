@@ -1,7 +1,7 @@
 FlashAir API Wrapper
 ====================
 
-`FlashAir` の API を `Node.js` から扱うための API Wrapper です。
+`FlashAir` API for `Node.js` API Wrapper
 
 Get Started
 -----------
@@ -17,61 +17,87 @@ var flashair = require("flashair")(appname, appmode);
 
 >
 #### - appname
-`CONFIG` で設定された `APPNAME` を指定してください。  
-省略可能で、デフォルトは `flashair` に設定されています。
+Specifies the application hostname ( the URL of the CGI server )
+In the default `CONFIG` the parameter `APPNAME` default value is `flashair`.
 
 >
 #### - appmode
-`CONFIG` で設定されて `APPMODE` に合わせて設定します。  
-無線 LAN の動作モードに合わせて、 `STA` か `AP` を指定してください。  
-省略可能で、デフォルトは `STA` に設定されています。
+Wireless mode, available options are : `STA` and `AP`
+In the default `CONFIG` the parameter `APPMODE` default value is `STA`.
+
 
 ### Step 3
 Write your code!
 
 Support
 -------
-ファームウェアバージョン `1.00.03+` から実装中です。  
-(`2.00.00+` 対応製品の手持ちが無いため)
+versione firmware `2.00.00+`
 
 ### command.cgi
-- [x] ファイルリストの取得
-- [ ] ファイル数の取得
-- [ ] アップデート情報の取得
-- [ ] SSID の取得
-- [ ] ネットワークパスワードの取得
-- [ ] MAC アドレスの取得
-- [ ] ブラウザ言語の取得
-- [ ] ファームウェアバージョン情報の取得
-- [ ] 制御イメージの取得
-- [ ] 無線 LAN モードの取得
-- [ ] 無線 LAN タイムアウト時間の設定
-- [ ] アプリケーション独自情報の取得
-- [ ] CID の取得
-- [ ] 共有メモリからのデータの取得
-- [ ] 共有メモリへのデータの書き込み
-- [ ] 空セクター数の取得
-- [ ] フォトシェアモードの有効化
-- [ ] フォトシェアモードの解除
-- [ ] フォトシェアモードの取得
-- [ ] フォトシェアモードの SSID の取得
+- [x] Get file list
+- [x] Get the number of files
+- [x] Get update status
+- [x] Get SSID
+- [x] Get network password
+- [x] Get MAC address
+- [x] Set browser language
+- [x] Get the firmware version
+- [x] Get the control image
+- [x] Get Wireless LAN mode
+- [x] Set Wireless LAN timeout length
+- [x] Get application unique information
+- [x] New Get Upload parameters
+- [x] Get CID
+- [x] New Get time stamp of write event
+- [x] Get data from shared memory
+- [x] Set data to shared memory
+- [x] Get the number of empty sectors
+- [x] New Control SD Interface as user I/O
+- [x] Enable Photo Share mode
+- [x] Disable Photo Share mode
+- [x] Get Photo Share mode status
+- [x] Get SSID for Photo Share mode
+
 
 ### config.cgi
-未着手
+- [x] Set Connection Timeout
+- [x] Set Application's Unique Information
+- [x] Set Wireless LAN Mode
+- [x] Set Network Security Key
+- [x] Set SSID
+- [x] Set Network Security Key for Internet Pass-Thru Mode
+- [x] Set SSID for Internet Pass-Thru Mode
+- [x] Set Wireless LAN Boot Screen Path
+- [x] Set Master Code
+- [x] Get Wireless LAN mode
+- [x] Set Wireless LAN timeout length
+- [x] Get application unique information
+- [x] New Get Upload parameters
+- [x] Get CID
+- [x] New Get time stamp of write event
+- [x] Get data from shared memory
+- [x] Set data to shared memory
+- [x] Get the number of empty sectors
+- [x] New Control SD Interface as user I/O
+- [x] Enable Photo Share mode
+- [x] Disable Photo Share mode
+- [x] Get Photo Share mode status
+- [x] Get SSID for Photo Share mode
+
 
 ### thumbnail.cgi
-未着手
+- [x] Get thumbnail
 
 ### upload.cgi
-未着手
+TODO
 
 Document
 --------
 ### command.cgi
-#### ファイルリストの取得
+#### Acquisizione di elenco di file
 ##### Example
 ```js
-flashair.command.filelist("/", function (err, files) {
+flashair.command.getFileList("/", function (err, files) {
   if (err)
     throw err;
 

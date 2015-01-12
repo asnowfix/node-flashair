@@ -1,6 +1,10 @@
 /**
- * API
- *
+ * Project     : node-flashair
+ * Component   : FileTransferService
+ * Author      : Giovanni Ortu
+ * eMail       : giovanni.ortu@abinsula.com
+ * Module name : API
+ * Description :
  */
 
 var url = require("url"),

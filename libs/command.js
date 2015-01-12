@@ -1,6 +1,10 @@
 /**
- * command.cgi wrapper
- * https://www.flashair-developers.com/ja/documents/api/commandcgi/
+ * Project     : node-flashair
+ * Component   : FileTransferService
+ * Author      : Giovanni Ortu
+ * eMail       : giovanni.ortu@abinsula.com
+ * Module name : Commands
+ * Description :
  */
 
 var Command = require("./api");
