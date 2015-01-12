@@ -7,7 +7,43 @@ var Command = require("./api");
 
 exports = module.exports = Command;
 
-Command.prototype.filelist = function (dirname, done) {
+Command.prototype.getString = function getString( code, callback ) {
+    var that = this;
+
+
+  this.__request({
+    hostname: this.endpoint,
+    pathname: "/command.cgi",
+    query: {
+      op: code
+    },
+  }, function (err, body) {
+ 
+    var res =  body.trim().split("\r\n");
+    
+    callback( err, res[0] );
+  });
+};
+
+Command.prototype.getInt = function( code, callback ) {
+    var that = this;
+
+
+  this.__request({
+    hostname: this.endpoint,
+    pathname: "/command.cgi",
+    query: {
+      op: code
+    },
+  }, function (err, body) {
+ 
+    var res =  body.trim().split("\r\n");
+    
+    callback( err, parseInt( res[0] ) );
+  });
+};
+
+Command.prototype.getFileList = function (dirname, done) {
   var that = this;
 
   if (dirname[0] !== "/") {
@@ -18,6 +54,8 @@ Command.prototype.filelist = function (dirname, done) {
   }
 
   var dirnameLength = dirname.length + 1;
+  
+  console.log( dirname )
 
   this.__request({
     hostname: this.endpoint,
@@ -27,7 +65,9 @@ Command.prototype.filelist = function (dirname, done) {
       DIR: dirname
     },
   }, function (err, body) {
+    
     var files = body.trim().split("\r\n");
+
     if (files[0] !== "WLANSD_FILELIST") {
       return done(new Error("wrong protocol"), null);
     }
@@ -84,3 +124,169 @@ Command.prototype.filelist = function (dirname, done) {
     done(err, files.slice(1));
   });
 };
+
+Command.prototype.getNumberOfFiles = function (dirname, done) {
+  var that = this;
+
+    if (dirname[0] !== "/") {
+    dirname = "/" + dirname;
+  }
+  if (dirname.length > 1 && dirname[dirname.length - 1] === "/") {
+    dirname = dirname.slice(0, -1);
+  }
+
+  var dirnameLength = dirname.length + 1;
+
+  this.__request({
+    hostname: this.endpoint,
+    pathname: "/command.cgi",
+    query: {
+      op: 101,
+      DIR: dirname
+    },
+  }, function (err, body) {
+ 
+    var res = "";
+    
+    if ( !err )
+     res = parseInt( body.trim().split("\r\n") );
+    
+    done( err, res );
+  });
+};
+
+Command.prototype.getUpdateStatus = function ( done ) {
+  var that = this;
+
+
+  this.__request({
+    hostname: this.endpoint,
+    pathname: "/command.cgi",
+    query: {
+      op: 102
+    },
+  }, function (err, body) {
+    
+    var res = "";
+ 
+    if ( !err )
+     res =  body.trim().split("\r\n");
+    
+     done(parseInt(res[0]), null );
+  });
+};
+
+
+  
+
+
+Command.prototype.getSSID = function ( done ) {
+  
+  
+  Command.prototype.getString( 102, done );
+
+};
+
+Command.prototype.getNetworkPassword = function ( done ) {
+
+  Command.prototype.getString( 104, done );
+  
+};
+
+Command.prototype.getMACAddress = function ( done ) {
+
+  Command.prototype.getString( 106, done );
+  
+};
+
+Command.prototype.getAcceptableBrowserLanguage = function ( done ) {
+
+  Command.prototype.getString( 107, done );
+  
+};
+
+Command.prototype.getFirmwareVersion = function ( done ) {
+
+  Command.prototype.getString( 108, done );
+  
+};
+
+
+Command.prototype.getControlImage = function ( done ) {
+
+  Command.prototype.getString( 109, done );
+  
+};
+
+Command.prototype.getWirelessLANMode = function ( done ) {
+
+  Command.prototype.getInt( 110, done );
+  
+};
+
+
+Command.prototype.getWirelessLANTimeoutPeriod = function ( done ) {
+
+  Command.prototype.getInt( 111, done );
+  
+};
+
+
+Command.prototype.getApplicationSpecificInformation = function ( done ) {
+
+  Command.prototype.getString( 117, done );
+  
+};
+
+Command.prototype.getUploadParameters = function ( done ) {
+
+  Command.prototype.getInt( 118, done );
+  
+};
+
+Command.prototype.getCardIdentifier = function ( done ) {
+
+  Command.prototype.getString( 120, done );
+  
+};
+
+Command.prototype.getTimestampOfWriteEvent = function ( done ) {
+
+  Command.prototype.getInt( 121, done );
+  
+};
+
+
+//Read data from shared memory (op=130)
+
+//Write data to shared memory (op=131)
+
+
+
+
+Command.prototype.getNumberOfEmptySectors = function ( done ) {
+
+  Command.prototype.getString( 140, done );
+  
+};
+
+
+//Control SD Interface as user I/O (op=190)
+
+//Enable Photo Share mode (op=200)
+
+
+//Disable Photo Share mode (op=201)
+
+Command.prototype.getPhotoShareModeStatus = function ( done ) {
+
+  Command.prototype.getString( 202, done );
+  
+};
+
+Command.prototype.getSSIDForPhotoShareMode = function ( done ) {
+
+  Command.prototype.getString( 203, done );
+  
+};
+

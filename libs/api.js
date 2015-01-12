@@ -5,6 +5,8 @@
 
 var url = require("url"),
     http = require("http");
+    
+var PORT=5000;
 
 exports = module.exports = API;
 
@@ -20,16 +22,19 @@ API.prototype.__request = function (options, done) {
 
   var opt = {
     method: options.method || "GET",
-    host: options.hostname,
+    hostname:  options.hostname,
     path: options.pathname + queryString,
-    headers: {}
+    headers: {},
+    port: options.port || PORT
   };
+
 
   if (opt.method.toUpperCase() === "POST") {
     opt.headers["Content-Type"] = "multipart/form-data";
   }
 
   var req = http.request(opt, function (res) {
+
     var body = "";
     res.setEncoding("utf8");
     res.on("data", function (chunk) {
@@ -40,6 +45,7 @@ API.prototype.__request = function (options, done) {
     });
   });
 
+  
   if (opt.method.toUpperCase() === "POST") {
     // req.write(options.data);
   }
