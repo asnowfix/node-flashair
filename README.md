@@ -7,7 +7,7 @@ Get Started
 -----------
 ### Step 1
 ```
-npm install flashair
+npm install flashair2
 ```
 
 ### Step 2

@@ -1,5 +1,5 @@
 {
-  "name": "flashair",
+  "name": "flashair2",
   "version": "0.1.0",
   "devDependencies": {
     "chai": "~1.7.2",
@@ -12,6 +12,6 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "http://github.com/ww24/node-flashair.git"
+    "url": "https://github.com/giovortu/node-flashair.git"
   }
 }
