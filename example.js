@@ -2,7 +2,7 @@
 var flashair = require("./lib")("localhost", "STA");
 
 // SD カードのルートディレクトリ直下のディレクトリ、ファイル一覧
-flashair.command.getSSID( function (err,res) {
+flashair.command.getNumberOfFiles( "/",function (err,res) {
   if (err)
   {
     console.log( "Error:" , err );

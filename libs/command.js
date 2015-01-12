@@ -239,9 +239,69 @@ Command.prototype.getTimestampOfWriteEvent = function ( done ) {
 
 
 //Read data from shared memory (op=130)
+Command.prototype.readDataFromSharedMemory = function (addr,len, done) {
+  var that = this;
+
+    if (dirname[0] !== "/") {
+    dirname = "/" + dirname;
+  }
+  if (dirname.length > 1 && dirname[dirname.length - 1] === "/") {
+    dirname = dirname.slice(0, -1);
+  }
+
+  var dirnameLength = dirname.length + 1;
+
+  this.__request({
+    hostname: this.endpoint,
+    pathname: "/command.cgi",
+    query: {
+      op: 130,
+      ADDR: addr,
+      LEN : len
+    },
+  }, function (err, body) {
+ 
+    var res = "";
+    
+    if ( !err )
+     res =  body.trim().split("\r\n");
+    
+    done( err, res );
+  });
+};
 
 //Write data to shared memory (op=131)
+Command.prototype.writeDataToSharedMemory = function (addr,len, data, done) {
+  var that = this;
 
+    if (dirname[0] !== "/") {
+    dirname = "/" + dirname;
+  }
+  if (dirname.length > 1 && dirname[dirname.length - 1] === "/") {
+    dirname = dirname.slice(0, -1);
+  }
+
+  var dirnameLength = dirname.length + 1;
+
+  this.__request({
+    hostname: this.endpoint,
+    pathname: "/command.cgi",
+    query: {
+      op: 131,
+      ADDR: addr,
+      LEN : len,
+      DATA : data
+    },
+  }, function (err, body) {
+ 
+    var res = "";
+    
+    if ( !err )
+     res =  body.trim().split("\r\n");
+    
+    done( err, res );
+  });
+};
 
 
 
@@ -253,11 +313,76 @@ Command.prototype.getNumberOfEmptySectors = function ( done ) {
 
 
 //Control SD Interface as user I/O (op=190)
+Command.prototype.controlSDInterfaceAsUserIO = function (ctrl,data, done) {
+  var that = this;
+
+    if (dirname[0] !== "/") {
+    dirname = "/" + dirname;
+  }
+  if (dirname.length > 1 && dirname[dirname.length - 1] === "/") {
+    dirname = dirname.slice(0, -1);
+  }
+
+  var dirnameLength = dirname.length + 1;
+
+  this.__request({
+    hostname: this.endpoint,
+    pathname: "/command.cgi",
+    query: {
+      op: 190,
+      CTRL: addr,
+      DATA : len
+    },
+  }, function (err, body) {
+ 
+    var res = "";
+    
+    if ( !err )
+     res =  body.trim().split("\r\n");
+    
+    done( err, res );
+  });
+};
+
 
 //Enable Photo Share mode (op=200)
+Command.prototype.enablePhotoShareMode = function (dirname,date, done) {
+  var that = this;
 
+    if (dirname[0] !== "/") {
+    dirname = "/" + dirname;
+  }
+  if (dirname.length > 1 && dirname[dirname.length - 1] === "/") {
+    dirname = dirname.slice(0, -1);
+  }
+
+  var dirnameLength = dirname.length + 1;
+
+  this.__request({
+    hostname: this.endpoint,
+    pathname: "/command.cgi",
+    query: {
+      op: 200,
+      DIR: dirname,
+      DATE : date
+    },
+  }, function (err, body) {
+ 
+    var res = "";
+    
+    if ( !err )
+     res = body.trim().split("\r\n");
+    
+     done( err, res );
+  });
+};
 
 //Disable Photo Share mode (op=201)
+Command.prototype.disablePhotoShareMode = function ( done ) {
+
+  Command.prototype.getString( 201, done );
+  
+};
 
 Command.prototype.getPhotoShareModeStatus = function ( done ) {
 
@@ -270,4 +395,5 @@ Command.prototype.getSSIDForPhotoShareMode = function ( done ) {
   Command.prototype.getString( 203, done );
   
 };
+
 
