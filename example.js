@@ -2,7 +2,7 @@
 var flashair = require("./lib")("localhost", "STA");
 
 
-flashair.config.setConnectionTimeout("109090920910290",10,10, function( err,res){ console.log(res) })
+flashair.thumbnail.getThumbnail("/DCIM/100DEBUG/DSC_0053.JPG", function( err,res){ console.log(res) })
 // SD カードのルートディレクトリ直下のディレクトリ、ファイル一覧
 flashair.command.getNumberOfFiles( "/",function (err,res) {
   if (err)
