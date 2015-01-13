@@ -1,6 +1,6 @@
 {
   "name": "flashair2",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "devDependencies": {
     "chai": "~1.7.2",
     "mocha": "~1.12.0"
@@ -12,6 +12,6 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/giovortu/node-flashair.git"
+    "url": "https://github.com/giovortu/node-flashair-v2.git"
   }
 }
