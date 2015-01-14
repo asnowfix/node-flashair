@@ -20,6 +20,7 @@ function API(endpoint) {
 
 API.prototype.__request = function (options, done) {
   options.query = options.query || {};
+  
   var queryString = url.format({
     query: options.query
   });
@@ -29,7 +30,7 @@ API.prototype.__request = function (options, done) {
     hostname:  options.hostname,
     path: options.pathname + queryString,
     headers: {},
-    port: options.port || PORT
+    port: options.port || PORT,
   };
 
 
@@ -40,12 +41,15 @@ API.prototype.__request = function (options, done) {
   var req = http.request(opt, function (res) {
 
     var body = "";
-    res.setEncoding("utf8");
+    
+    res.setEncoding('binary');
+    
     res.on("data", function (chunk) {
-      body += chunk;
+      body = body + chunk;
     });
     res.on("end", function () {
-      done(null, body);
+      
+      done(null, body );
     });
   });
   

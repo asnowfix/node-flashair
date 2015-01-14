@@ -92,6 +92,7 @@ Command.prototype.getFileList = function (dirname, callback) {
     },
   }, function (err, body) {
     
+    var data = [];
    
     var files = body.trim().split("\r\n");
 
@@ -144,12 +145,13 @@ Command.prototype.getFileList = function (dirname, callback) {
       // parseInt("000001", 2) => 1
       attr.readonly = 1 & prop.attr;
       prop.attr = attr;
-
-     // return prop;
       
-      callback(err, prop);
+      data.push( prop );
+      
+      
     });
 
+    callback(err, data);
     
   });
 };

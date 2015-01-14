@@ -101,44 +101,44 @@ Config.prototype.setConnectionTimeout = function( mastercode, appautotime,appmod
 
 Config.prototype.setApplicationUniqueInformation = function(mastercode, appinfo, callback) {
       
-      Config.prototype.setString( mastercode,"APPINFO", appinfo, callback );
+      this.setString( mastercode,"APPINFO", appinfo, callback );
   
 };
 
 Config.prototype.setWirelessLANMode = function(mastercode, appmode, callback) {
   
-      Config.prototype.setString( mastercode,"APPMODE", appmode, callback );
+      this.setString( mastercode,"APPMODE", appmode, callback );
   
 };
 
 Config.prototype.setNetworkSecurityKey = function(mastercode, appnkey, callback) {
   
-      Config.prototype.setString( mastercode,"APPNETWORKKEY", appnkey, callback );
+      this.setString( mastercode,"APPNETWORKKEY", appnkey, callback );
   
 };
 
 Config.prototype.setSSID = function(mastercode, ssid, callback) {
   
-      Config.prototype.setString( mastercode,"APPSSID", ssid, callback );
+      this.setString( mastercode,"APPSSID", ssid, callback );
   
 };
 
 
 Config.prototype.setNetworkSecurityKeyForInternetPassthroughMode = function(mastercode, key, callback) {
   
-      Config.prototype.setString( mastercode,"BRGNETWORKKEY", key, callback );
+      this.setString( mastercode,"BRGNETWORKKEY", key, callback );
   
 };
 
 Config.prototype.setSSIDForInternetPassthroughMode = function(mastercode, ssid, callback) {
   
-      Config.prototype.setString( mastercode,"BRGSSID", ssid, callback );
+      this.setString( mastercode,"BRGSSID", ssid, callback );
   
 };
 
 Config.prototype.setWirelessLanBootScreen = function(mastercode, path, callback) {
   
-      Config.prototype.setString( mastercode,"CIPATH", path, callback );
+      this.setString( mastercode,"CIPATH", path, callback );
   
 };
 
