@@ -10,9 +10,9 @@
 //APPNAME, APPMODE ("STA" or "AP")
 var flashair = require("./lib")("flashair", "STA");
 
-/*
 
-flashair.command.getFileList( "/DCIM" ,function (err,res) {
+
+flashair.command.getFileList( "/DCIM/101CANON" ,function (err,res) {
   if (err)
   {
     console.log( "Error:" , err );
@@ -22,7 +22,7 @@ flashair.command.getFileList( "/DCIM" ,function (err,res) {
 
   console.log(res);
 
-});*/
+});
 
 
 flashair.command.getSSID( function (err,res) {

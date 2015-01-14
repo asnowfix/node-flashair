@@ -145,10 +145,12 @@ Command.prototype.getFileList = function (dirname, callback) {
       attr.readonly = 1 & prop.attr;
       prop.attr = attr;
 
-      return prop;
+     // return prop;
+      
+      callback(err, prop);
     });
 
-    callback(err, files.slice(1));
+    
   });
 };
 
