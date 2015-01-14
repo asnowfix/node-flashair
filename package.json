@@ -1,6 +1,6 @@
 {
   "name": "flashair2",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "devDependencies": {
     "chai": "~1.7.2",
     "mocha": "~1.12.0"

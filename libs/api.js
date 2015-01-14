@@ -1,5 +1,5 @@
 /**
- * Project     : node-flashair
+ * Project     : flashair2
  * Component   : FileTransferService
  * Author      : Giovanni Ortu
  * eMail       : giovanni.ortu@abinsula.com
