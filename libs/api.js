@@ -10,7 +10,7 @@
 var url = require("url"),
     http = require("http");
     
-var PORT=5000;
+var PORT=80;
 
 exports = module.exports = API;
 
@@ -48,6 +48,10 @@ API.prototype.__request = function (options, done) {
       done(null, body);
     });
   });
+  
+  req.on('error', function(e) {
+  console.log('problem with request: ' , e);
+});
 
   
   if (opt.method.toUpperCase() === "POST") {

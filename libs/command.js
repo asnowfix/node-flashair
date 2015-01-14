@@ -18,12 +18,12 @@ Command.prototype.getString = function getString( code, callback ) {
       {
 	throw "Missing callback";
       }
-
+      
   this.__request({
     hostname: this.endpoint,
     pathname: "/command.cgi",
     query: {
-      op: code
+      op: parseInt(code)
     },
   }, function (err, body) {
  
@@ -49,7 +49,7 @@ Command.prototype.getInt = function( code, callback ) {
     hostname: this.endpoint,
     pathname: "/command.cgi",
     query: {
-      op: code
+      op: parseInt(code)
     },
   }, function (err, body) {
  
@@ -65,6 +65,8 @@ Command.prototype.getInt = function( code, callback ) {
 };
 
 Command.prototype.getFileList = function (dirname, callback) {
+
+
   var that = this;
   
       if ( !callback )
@@ -80,9 +82,7 @@ Command.prototype.getFileList = function (dirname, callback) {
   }
 
   var dirnameLength = dirname.length + 1;
-  
-  console.log( dirname )
-
+ 
   this.__request({
     hostname: this.endpoint,
     pathname: "/command.cgi",
@@ -191,83 +191,106 @@ Command.prototype.getNumberOfFiles = function (dirname, callback) {
 
 Command.prototype.getUpdateStatus = function ( callback ) {
   
- Command.prototype.getInt( 102, callback );
+    var that = this;
+    
+      if ( !callback )
+      {
+	throw "Missing callback";
+      }
+
+  this.__request({
+    hostname: this.endpoint,
+    pathname: "/command.cgi",
+    query: {
+      op: 102
+    },
+  }, function (err, body) {
+ 
+    var res=[0];
+    
+    if ( !err )
+    {
+     res =  body.trim().split("\r\n");
+    }
+    
+    callback( err, parseInt( res[0] ) );
+  });
 };
 
 
 Command.prototype.getSSID = function ( callback ) {
   
   
-  Command.prototype.getString( 104, callback );
+  this.getString( 104, callback );
 
 };
 
 Command.prototype.getNetworkPassword = function ( callback ) {
 
-  Command.prototype.getString( 105, callback );
+  this.getString( 105, callback );
   
 };
 
 Command.prototype.getMACAddress = function ( callback ) {
 
-  Command.prototype.getString( 106, callback );
+  this.getString( 106, callback );
   
 };
 
 Command.prototype.getAcceptableBrowserLanguage = function ( callback ) {
 
-  Command.prototype.getString( 107, callback );
+  this.getString( 107, callback );
   
 };
 
 Command.prototype.getFirmwareVersion = function ( callback ) {
 
-  Command.prototype.getString( 108, callback );
+  this.getString( 108, callback );
   
 };
 
 
 Command.prototype.getControlImage = function ( callback ) {
 
-  Command.prototype.getString( 109, callback );
+  this.getString( 109, callback );
   
 };
 
 Command.prototype.getWirelessLANMode = function ( callback ) {
 
-  Command.prototype.getInt( 110, callback );
+  this.getInt( 110, callback );
   
 };
 
 
 Command.prototype.getWirelessLANTimeoutPeriod = function ( callback ) {
 
-  Command.prototype.getInt( 111, callback );
+  this.getInt( 111, callback );
   
 };
 
 
 Command.prototype.getApplicationSpecificInformation = function ( callback ) {
 
-  Command.prototype.getString( 117, callback );
+  this.getString( 117, callback );
   
 }; 
 
 Command.prototype.getUploadParameters = function ( callback ) {
 
-  Command.prototype.getInt( 118, callback );
+  this.getInt( 118, callback );
   
 };
 
 Command.prototype.getCardIdentifier = function ( callback ) {
 
-  Command.prototype.getString( 120, callback );
+  this.getString( 120, callback );
   
 };
 
 Command.prototype.getTimestampOfWriteEvent = function ( callback ) {
 
-  Command.prototype.getInt( 121, callback );
+  this.getInt( 121, callback );
   
 };
 
@@ -355,7 +378,7 @@ Command.prototype.writeDataToSharedMemory = function (addr,len, data, callback) 
 
 Command.prototype.getNumberOfEmptySectors = function ( callback ) {
 
-  Command.prototype.getString( 140, callback );
+  this.getString( 140, callback );
   
 };
 
@@ -442,19 +465,19 @@ Command.prototype.enablePhotoShareMode = function (dirname,date, callback) {
 //Disable Photo Share mode (op=201)
 Command.prototype.disablePhotoShareMode = function ( callback ) {
 
-  Command.prototype.getString( 201, callback );
+  this.getString( 201, callback );
   
 };
 
 Command.prototype.getPhotoShareModeStatus = function ( callback ) {
 
-  Command.prototype.getString( 202, callback );
+  this.getString( 202, callback );
   
 };
 
 Command.prototype.getSSIDForPhotoShareMode = function ( callback ) {
 
-  Command.prototype.getString( 203, callback );
+  this.getString( 203, callback );
   
 };
 
