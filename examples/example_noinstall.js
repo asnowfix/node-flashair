@@ -8,7 +8,7 @@
  */
 
 //APPNAME, APPMODE ("STA" or "AP")
-var flashair = require("./lib")("flashair", "STA");
+var flashair = require("../lib")("flashair", "STA");
 
 var url = require("url"),
     http = require("http");
