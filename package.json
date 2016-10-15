@@ -1,6 +1,6 @@
 {
-  "name": "flashair2",
-  "version": "0.5.3",
+  "name": "flashair",
+  "version": "0.6.0",
   "devDependencies": {
     "chai": "~1.7.2",
     "mocha": "~1.12.0"
@@ -9,9 +9,13 @@
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": {},
+  "dependencies": {
+    "debug": "^2.2.0",
+    "ini": "^1.3.4",
+    "underscore": "^1.8.3"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/giovortu/node-flashair-v2.git"
+    "url": "git@github.com:asnowfix/node-flashair.git"
   }
 }

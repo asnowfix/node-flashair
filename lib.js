@@ -13,8 +13,9 @@ var APPMODE = "STA"; // or AP
 
 var Libs = require("./libs"),
     hostname = require("os").hostname();
- 
+
 module.exports = function (appname, appmode) {
+
   // API End-point
   var endpoint = appname || APPNAME;
   APPMODE = appmode || APPMODE;
@@ -26,3 +27,5 @@ module.exports = function (appname, appmode) {
 
   return new Libs(endpoint);
 };
+
+module.exports.sd = require('./libs/sd');
