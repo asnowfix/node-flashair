@@ -18,7 +18,13 @@ function load() {
 
 function save() {
     debug("saving hwConfig:", _hwConfig);
-    fs.writeFileSync(_hwConfigFile, ini.encode(_hwConfig, { whitespace: false }), 'utf-8');
+    var iniConfig = ini.encode(_hwConfig, {
+        whitespace: false,
+        newline: true,
+        platform: 'win32'
+    });
+    debug("as:", iniConfig);
+    fs.writeFileSync(_hwConfigFile, iniConfig, 'utf-8');
 }
 
 load();
@@ -35,14 +41,38 @@ module.exports = {
 
     save: function _save() {
         save();
+        return this;
     },
 
     getHw: function _getHw() {
         return _.clone(_hwConfig);
     },
 
-    setHw(hwconfig) {
-        _hwConfig = _.extend(_hwConfig, hwConfig);
+    setHw(hwConfig) {
+        debug("setHw(): BEFORE _hwConfig:", _hwConfig, "hwConfig:", hwConfig)
+        _hwConfig.Vendor = _.extend(_hwConfig.Vendor, hwConfig.Vendor);
+        _hwConfig.WLANSD = _.extend(_hwConfig.WLANSD, hwConfig.WLANSD);
+        debug("setHw(): AFTER _hwConfig:", _hwConfig, "hwConfig:", hwConfig)
+        return this;
+    },
+
+    runAsAccessPoint(ssid, key) {
+        if(typeof ssid != 'string' || ssid.length < 1) {
+            throw new Error("Invalid ssid='" + ssid + "' must be a string of 1+ characters");
+        }
+        if(typeof key != 'string' || key.length < 8) {
+            throw new Error("Invalid key='" + key + "' must be a string of 8+ characters");
+        }
+        var hwConfig = {
+            Vendor: {
+                APPMODE: 4,
+                APPSSID: ssid || "flashair",
+                APPNETWORKKEY: key || "12345678"
+            }
+        }
+        debug("Setting hw:", hwConfig);
+        this.setHw(hwConfig);
+        return this;
     },
 
     get: function _get() {

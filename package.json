@@ -16,6 +16,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:asnowfix/node-flashair.git"
-  }
+    "url": "git+ssh://git@github.com/asnowfix/node-flashair.git"
+  },
+  "description": "FlashAir API Wrapper ====================",
+  "bugs": {
+    "url": "https://github.com/asnowfix/node-flashair/issues"
+  },
+  "homepage": "https://github.com/asnowfix/node-flashair#readme",
+  "bin": {
+    "flashair": "config.js"
+  },
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "keywords": [
+    "flashair",
+    "sdio",
+    "wi-fi",
+    "eyefi",
+    "toshiba"
+  ],
+  "author": "Takenori Nakagawa",
+  "license": "MIT"
 }

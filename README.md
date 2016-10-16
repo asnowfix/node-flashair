@@ -15,7 +15,6 @@ npm install flashair2
 var flashair = require("flashair")(appname, appmode);
 ```
 
->
 #### - appname
 Specifies the application hostname ( the URL of the CGI server )
 In the default `CONFIG` the parameter `APPNAME` default value is `flashair`.
@@ -111,6 +110,7 @@ License
 The MIT License (MIT)
 
 Copyright (c) 2013 Takenori Nakagawa
+Copyright (c) 2016 Francois-Xavier Kowalski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -129,3 +129,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+References
+==========
+
+* [Toshiba FlashAir™ W-03](http://www.toshiba-memory.com/cms/en/products/wireless-sd-cards/FlashAir/product_detail.jsp?productid=737)
+* [FlashAir™ Developers](https://flashair-developers.com/)
