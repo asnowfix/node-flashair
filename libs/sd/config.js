@@ -48,29 +48,45 @@ module.exports = {
         return _.clone(_hwConfig);
     },
 
-    setHw(hwConfig) {
-        debug("setHw(): BEFORE _hwConfig:", _hwConfig, "hwConfig:", hwConfig)
+    setHw: function _setHw(hwConfig) {
         _hwConfig.Vendor = _.extend(_hwConfig.Vendor, hwConfig.Vendor);
         _hwConfig.WLANSD = _.extend(_hwConfig.WLANSD, hwConfig.WLANSD);
-        debug("setHw(): AFTER _hwConfig:", _hwConfig, "hwConfig:", hwConfig)
         return this;
     },
 
-    runAsAccessPoint(ssid, key) {
-        if(typeof ssid != 'string' || ssid.length < 1) {
-            throw new Error("Invalid ssid='" + ssid + "' must be a string of 1+ characters");
-        }
-        if(typeof key != 'string' || key.length < 8) {
-            throw new Error("Invalid key='" + key + "' must be a string of 8+ characters");
-        }
+    runAsAccessPoint: function _runAsAccessPoint(flashairNet) {
+        debug("runAsAccessPoint: flashairNet:", flashairNet);
+        _checkNetwork(flashairNet);
         var hwConfig = {
             Vendor: {
                 APPMODE: 4,
-                APPSSID: ssid || "flashair",
-                APPNETWORKKEY: key || "12345678"
+                APPSSID: flashairNet.ssid,
+                APPNETWORKKEY: flashairNet.key
             }
         }
-        debug("Setting hw:", hwConfig);
+        debug("runAsAccessPoint: Setting hw:", hwConfig);
+        this.setHw(hwConfig);
+        return this;
+    },
+
+    runInPassThroughMode: function _runInPassThroughMode(homeNet, flashairNet) {
+        debug("runInPassThroughMode: homeNet:", homeNet, "flashairNet:", flashairNet);
+        _checkNetwork(flashairNet);
+        _checkNetwork(homeNet);
+        var hwConfig = {
+            Vendor: {
+                APPMODE: 6,
+                APPSSID: flashairNet.ssid,
+                APPNETWORKKEY: flashairNet.key,
+                BRGSSID: homeNet.ssid,
+                BRGNETWORKKEY: homeNet.key
+            },
+            WLANSD: {
+                ID: flashairNet.ssid,
+                DHCP_Enabled: 'YES'
+            }
+        }
+        debug("runInPassThroughMode: Setting hw:", hwConfig);
         this.setHw(hwConfig);
         return this;
     },
@@ -140,4 +156,13 @@ module.exports = {
         return WLANAPMODES[_hwConfig.Vendor.WLANAPMODE || "0x03"];
     }
 
+}
+
+function _checkNetwork(net) {
+    if(typeof net.ssid != 'string' || net.ssid.length < 1) {
+        throw new Error("Invalid ssid='" + net.ssid + "' must be a string of 1+ characters");
+    }
+    if(typeof net.key != 'string' || net.key.length < 8) {
+        throw new Error("Invalid key='" + net.key + "' must be a string of 8+ characters");
+    }
 }

@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/asnowfix/node-flashair#readme",
   "bin": {
-    "flashair": "config.js"
+    "flashair": "bin/config.js"
   },
   "directories": {
     "example": "examples",
