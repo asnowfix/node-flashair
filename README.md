@@ -135,3 +135,4 @@ References
 
 * [Toshiba FlashAir™ W-03](http://www.toshiba-memory.com/cms/en/products/wireless-sd-cards/FlashAir/product_detail.jsp?productid=737)
 * [FlashAir™ Developers](https://flashair-developers.com/)
+* [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
