@@ -7,60 +7,56 @@
  * Description :
  */
 
-var url = require("url"),
-    http = require("http");
-    
-var PORT=80;
+var url = require('url')
+var http = require('http')
 
-exports = module.exports = API;
+var PORT = 80
 
-function API(endpoint) {
-  this.endpoint = endpoint;
-}; 
+exports = module.exports = API
+
+function API (endpoint) {
+  this.endpoint = endpoint
+};
 
 API.prototype.__request = function (options, done) {
-  options.query = options.query || {};
-  
+  options.query = options.query || {}
+
   var queryString = url.format({
     query: options.query
-  });
+  })
 
   var opt = {
-    method: options.method || "GET",
-    hostname:  options.hostname,
+    method: options.method || 'GET',
+    hostname: options.hostname,
     path: options.pathname + queryString,
     headers: {},
-    port: options.port || PORT,
-  };
+    port: options.port || PORT
+  }
 
-
-  if (opt.method.toUpperCase() === "POST") {
-    opt.headers["Content-Type"] = "multipart/form-data";
+  if (opt.method.toUpperCase() === 'POST') {
+    opt.headers['Content-Type'] = 'multipart/form-data'
   }
 
   var req = http.request(opt, function (res) {
+    var body = ''
 
-    var body = "";
-    
-    res.setEncoding('binary');
-    
-    res.on("data", function (chunk) {
-      body = body + chunk;
-    });
-    res.on("end", function () {
-      
-      done(null, body );
-    });
-  });
-  
-  req.on('error', function(e) {
-  console.log('problem with request: ' , e);
-});
+    res.setEncoding('binary')
 
-  
-  if (opt.method.toUpperCase() === "POST") {
+    res.on('data', function (chunk) {
+      body = body + chunk
+    })
+    res.on('end', function () {
+      done(null, body)
+    })
+  })
+
+  req.on('error', function (e) {
+    console.log('problem with request: ', e)
+  })
+
+  if (opt.method.toUpperCase() === 'POST') {
     // req.write(options.data);
   }
 
-  req.end();
-};
+  req.end()
+}

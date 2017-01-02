@@ -1,3 +1,3 @@
 module.exports = {
-    config: require('./sd/config')
+  config: require('./sd/config')
 }

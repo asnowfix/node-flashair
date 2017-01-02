@@ -7,31 +7,22 @@
  * Description :
  */
 
-var Thumbnail = require("./api");
+var Thumbnail = require('./api')
 
+exports = module.exports = Thumbnail
 
-exports = module.exports = Thumbnail; 
-
-Thumbnail.prototype.getThumbnail = function( path , callback) { 
-  
-      var that = this;
-      
-      if ( !callback )
-      {
-	throw "Missing callback";
-      }      
-
+Thumbnail.prototype.getThumbnail = function (path, callback) {
+  if (!callback) {
+    throw new Error('Missing callback')
+  }
 
   this.__request({
     hostname: this.endpoint,
-    pathname: "/thumbnail.cgi",
-    query: { 
-      PATH: "?" + path
-    },
+    pathname: '/thumbnail.cgi',
+    query: {
+      PATH: '?' + path
+    }
   }, function (err, body) {
- 
-
-     callback( err, body );
-  });
-  
-};
+    callback(err, body)
+  })
+}

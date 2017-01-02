@@ -8,24 +8,23 @@
  */
 
 // default
-var APPNAME = "flashair";
-var APPMODE = "STA"; // or AP
+var APPNAME = 'flashair'
+var APPMODE = 'STA' // or AP
 
-var Libs = require("./libs"),
-    hostname = require("os").hostname();
+var Libs = require('./libs')
+var hostname = require('os').hostname()
 
 module.exports = function (appname, appmode) {
-
   // API End-point
-  var endpoint = appname || APPNAME;
-  APPMODE = appmode || APPMODE;
+  var endpoint = appname || APPNAME
+  APPMODE = appmode || APPMODE
 
   // add .local for Mac
-  if (APPMODE === "STA" && hostname !== "local" && hostname.split(".").slice(-1)[0] === "local") {
-    endpoint += ".local";
+  if (APPMODE === 'STA' && hostname !== 'local' && hostname.split('.').slice(-1)[0] === 'local') {
+    endpoint += '.local'
   }
 
-  return new Libs(endpoint);
-};
+  return new Libs(endpoint)
+}
 
-module.exports.sd = require('./libs/sd');
+module.exports.sd = require('./libs/sd')

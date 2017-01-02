@@ -3,11 +3,14 @@
  *
  */
 
-var expect = require("chai").expect,
-    flashair = require("../lib");
+var expect = require('chai').expect
+var FlashAir = require('../lib')
 
-describe("flashair.command", function () {
-  describe(".filelist", function () {
-    it("read files");
-  });
-});
+var flashair = new FlashAir('flashair', 'STA')
+
+describe('flashair.command', function () {
+  describe('.filelist', function () {
+    it('read files', function(done) {
+    })
+  })
+})
