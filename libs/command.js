@@ -8,26 +8,9 @@
  */
 
 var Command = require('./api')
+var tools = require('./tools')
 
 exports = module.exports = Command
-
-function requestDir (dirname) {
-  if (dirname[0] !== '/') {
-    dirname = '/' + dirname
-  }
-  if (dirname.length > 1 && dirname[dirname.length - 1] === '/') {
-    dirname = dirname.slice(0, -1)
-  }
-
-  return dirname
-}
-
-function saveData (data) {
-  if (typeof data !== 'string') {
-    data = JSON.stringify(data)
-  }
-  require('fs').writeFileSync('data.log', data)
-}
 
 Command.prototype.getString = function getString (code, callback) {
   if (!callback) {
@@ -79,7 +62,7 @@ Command.prototype.getFileList = function (dirname, callback) {
     throw new Error('Missing callback')
   }
 
-  dirname = requestDir(dirname)
+  dirname = tools.requestDir(dirname)
 
   this.__request({
     hostname: this.endpoint,
@@ -90,7 +73,7 @@ Command.prototype.getFileList = function (dirname, callback) {
     }
   }, function (err, body) {
     var data = []
-    //saveData(body)
+    // tools.saveData(body)
 
     var files = body.trim().split('\r\n')
 
@@ -161,7 +144,7 @@ Command.prototype.getNumberOfFiles = function (dirname, callback) {
     pathname: '/command.cgi',
     query: {
       op: 101,
-      DIR: requestDir(dirname)
+      DIR: tools.requestDir(dirname)
     }
   }, function (err, body) {
     var res = ''
@@ -335,7 +318,7 @@ Command.prototype.enablePhotoShareMode = function (dirname, date, callback) {
     pathname: '/command.cgi',
     query: {
       op: 200,
-      DIR: requestDir(dirname),
+      DIR: tools.requestDir(dirname),
       DATE: date
     }
   }, function (err, body) {
