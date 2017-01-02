@@ -10,9 +10,9 @@
 // use :
 // npm install flashair2
 
-var flash = require('flashair2')
+var FlashAir = require('flashair2')
 
-var flashair = new flash('flashair', 'STA')
+var flashair = new FlashAir('flashair', 'STA')
 
 flashair.command.getMACAddress(function (err, res) {
   if (err) {
@@ -22,4 +22,3 @@ flashair.command.getMACAddress(function (err, res) {
 
   console.log(res)
 })
-
