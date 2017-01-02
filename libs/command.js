@@ -73,7 +73,6 @@ Command.prototype.getFileList = function (dirname, callback) {
   }
 
   dirname = requestDir(dirname)
-  var dirnameLength = dirname.length + 1
 
   this.__request({
     hostname: this.endpoint,
@@ -101,10 +100,10 @@ Command.prototype.getFileList = function (dirname, callback) {
       prop.size = Number(filePropArr.pop())
 
       // filename/dirname format
-      prop.name = filePropArr.join(',').slice(dirnameLength)
-      prop.path = 'http://' + that.endpoint + dirname + '/' + prop.name
+      prop.name = filePropArr.pop()
+      prop.path = 'http://' + that.endpoint + (dirname === '/' ? dirname : dirname + '/') + prop.name
 
-      // time fortam
+      // time format
       var time = []
       time[0] = prop.time >>> 11
       // parseInt("0000011111100000", 2) => 2016
@@ -149,19 +148,12 @@ Command.prototype.getNumberOfFiles = function (dirname, callback) {
     throw new Error('Missing callback')
   }
 
-  if (dirname[0] !== '/') {
-    dirname = '/' + dirname
-  }
-  if (dirname.length > 1 && dirname[dirname.length - 1] === '/') {
-    dirname = dirname.slice(0, -1)
-  }
-
   this.__request({
     hostname: this.endpoint,
     pathname: '/command.cgi',
     query: {
       op: 101,
-      DIR: dirname
+      DIR: requestDir(dirname)
     }
   }, function (err, body) {
     var res = ''
@@ -330,14 +322,12 @@ Command.prototype.enablePhotoShareMode = function (dirname, date, callback) {
     throw new Error('Missing callback')
   }
 
-  dirname = requestDir(dirname)
-
   this.__request({
     hostname: this.endpoint,
     pathname: '/command.cgi',
     query: {
       op: 200,
-      DIR: dirname,
+      DIR: requestDir(dirname),
       DATE: date
     }
   }, function (err, body) {
