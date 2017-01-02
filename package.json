@@ -2,8 +2,13 @@
   "name": "flashair",
   "version": "0.6.0",
   "devDependencies": {
-    "chai": "~1.7.2",
-    "mocha": "~1.12.0"
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2",
+    "remark-cli": "^2.1.0",
+    "remark-preset-lint-recommended": "^1.0.0",
+    "sinon": "^1.17.6",
+    "standard": "^8.6.0"
   },
   "main": "lib.js",
   "scripts": {
@@ -17,14 +22,6 @@
     "debug": "^2.2.0",
     "ini": "^1.3.4",
     "underscore": "^1.8.3"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.1.2",
-    "remark": "^6.2.0",
-    "sinon": "^1.17.6",
-    "standard": "^8.6.0"
   },
   "repository": {
     "type": "git",

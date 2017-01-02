@@ -19,7 +19,6 @@ var flashair = require("flashair")(appname, appmode);
 Specifies the application hostname ( the URL of the CGI server )
 In the default `CONFIG` the parameter `APPNAME` default value is `flashair`.
 
->
 #### - appmode
 Wireless mode, available options are : `STA` and `AP`
 In the default `CONFIG` the parameter `APPMODE` default value is `STA`.
