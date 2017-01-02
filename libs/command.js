@@ -22,6 +22,13 @@ function requestDir (dirname) {
   return dirname
 }
 
+function saveData (data) {
+  if (typeof data !== 'string') {
+    data = JSON.stringify(data)
+  }
+  require('fs').writeFileSync('data.log', data)
+}
+
 Command.prototype.getString = function getString (code, callback) {
   if (!callback) {
     throw new Error('Missing callback')
@@ -83,6 +90,7 @@ Command.prototype.getFileList = function (dirname, callback) {
     }
   }, function (err, body) {
     var data = []
+    //saveData(body)
 
     var files = body.trim().split('\r\n')
 
