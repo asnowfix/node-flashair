@@ -7,7 +7,7 @@
 var expect = require('chai').expect
 var FlashAir = require('../lib')
 
-var flashair = new FlashAir('flashair', 'STA')
+var flashair = new FlashAir('flashair', 'IPT')
 
 describe('flashair.command', function () {
   describe('.getFileList', function () {

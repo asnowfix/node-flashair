@@ -9,12 +9,12 @@
 
 // default
 var APPNAME = 'flashair'
-var APPMODE = 'STA' // or AP
+var APPMODE = 'STA' // or AP or IPT
 
 var Libs = require('./libs')
 var hostname = require('os').hostname()
 
-module.exports = function (appname, appmode) {
+module.exports = function (appname, appmode, configPath) {
   // API End-point
   var endpoint = appname || APPNAME
   APPMODE = appmode || APPMODE
@@ -24,7 +24,7 @@ module.exports = function (appname, appmode) {
     endpoint += '.local'
   }
 
-  return new Libs(endpoint)
+  return new Libs(endpoint, configPath)
 }
 
-module.exports.sd = require('./libs/sd')
+console.log(12)

@@ -103,13 +103,20 @@ flashair.command.getFileList("/", function (err, files) {
 });
 ```
 
+Resources
+---------
+
+* [FlashAir Developper Home](https://flashair-developers.com/)
+* [FlashAir Developpers Home](https://flashair-developers.com/en/support/forum/)
+* [FlashAir StackOverflow channel](http://stackoverflow.com/questions/tagged/flashair)
+
 License
 -------
 
 The MIT License (MIT)
 
 Copyright (c) 2013 Takenori Nakagawa
-Copyright (c) 2016 Francois-Xavier Kowalski
+Copyright (c) 2016-2017 Francois-Xavier Kowalski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
