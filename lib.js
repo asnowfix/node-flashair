@@ -14,7 +14,7 @@ var APPMODE = 'STA' // or AP or IPT
 var Libs = require('./libs')
 var hostname = require('os').hostname()
 
-module.exports = function (appname, appmode, configPath) {
+module.exports = function (appname, appmode) {
   // API End-point
   var endpoint = appname || APPNAME
   APPMODE = appmode || APPMODE
@@ -24,7 +24,5 @@ module.exports = function (appname, appmode, configPath) {
     endpoint += '.local'
   }
 
-  return new Libs(endpoint, configPath)
+  return new Libs(endpoint)
 }
-
-console.log(12)

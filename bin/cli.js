@@ -13,7 +13,8 @@ try {
       ssid: argv['card-ssid'],
       key: argv['card-key']
     }
-    flashair.ini.runInPassThroughMode(homeNet, flashairNet).save()
+    flashair.config.runInPassThroughMode(homeNet, flashairNet)
+    flashair.config.save()
   } else if (argv._[0] === 'ls') {
     flashair.command.getFileList(argv._[1] || '/', function (err, data) {
       if (err) {

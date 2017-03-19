@@ -107,7 +107,7 @@ Resources
 ---------
 
 * [FlashAir Developper Home](https://flashair-developers.com/)
-* [FlashAir Developpers Home](https://flashair-developers.com/en/support/forum/)
+* [FlashAir Developpers Forum](https://flashair-developers.com/en/support/forum/)
 * [FlashAir StackOverflow channel](http://stackoverflow.com/questions/tagged/flashair)
 
 License
